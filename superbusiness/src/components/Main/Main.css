@@ -1,0 +1,77 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+  }
+  
+  .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .main-header {
+    text-align: center;
+  }
+  
+  .main-header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #c10109;
+  }
+  
+  .main-header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .main-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .section-courses,
+  .section-metaverse,
+  .section-marketplace {
+    width: 30%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    color: #c10109;
+  }
+  
+  .section-courses h2,
+  .section-metaverse h2,
+  .section-marketplace h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  
+  .section-courses p,
+  .section-metaverse p,
+  .section-marketplace p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .section-courses a,
+  .section-metaverse a,
+  .section-marketplace a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .section-courses a:hover,
+  .section-metaverse a:hover,
+  .section-marketplace a:hover {
+    color: #444;
+  }  

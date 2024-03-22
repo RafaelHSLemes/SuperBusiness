@@ -1,0 +1,70 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+  }
+  
+  .register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .register-container h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #c10109;
+  }
+  
+  .register-container form {
+    margin-top: 1rem;
+  }
+  
+  .register-container input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .register-container button {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #c10109;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .register-container button:hover {
+    background-color: #282828;
+  }
+  
+  .register-container p {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .register-container a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .register-container a:hover {
+    color: #444;
+  }  
