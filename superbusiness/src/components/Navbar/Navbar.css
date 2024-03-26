@@ -9,6 +9,11 @@
   .logo {
     margin-right: 20px;
   }
+
+  .logo img {
+    width: 50%;
+    height: 50%;
+  }
   
   .nav-links {
     display: flex;

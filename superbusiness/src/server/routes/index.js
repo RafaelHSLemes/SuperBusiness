@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser'); // Corrigindo o nome da função
 const RegisterModel = require('../models/Register')
+const LoginModel = require('../models/Login')
 
 const router = express();
 router.use(cors());
@@ -23,6 +24,20 @@ router.post('/register', (req, res) => {
             .catch(err => res.json(err))
         }
     }).catch(err => res.json(err))
+})
+
+router.post('/login', (req, res) => {
+    const {username, password} = req.body;
+    LoginModel.findOne({username:username})
+    .then(user => {
+        if(user) {
+            if(user.password === password) {
+                res.json("Login realizado com sucesso!")
+            } else {
+                res.json("Usuário ou senha incorreta!")
+            }
+        }
+    })
 })
 
 module.exports = router;

@@ -1,64 +1,84 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 import axios from 'axios';
 
 function Register() {
-
-    const [firstname, setfirstname] = useState('');
-    const [lastname, setlastname] = useState('');
-    const [username, setusername] = useState('');
-    const [email, setemail] = useState('');
-    const [password, setpassword] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate(); // Added useNavigate hook
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/register', {firstname, lastname, username, email, password})
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
+
+        try {
+            const response = await axios.post('http://localhost:3001/register', {
+                firstname,
+                lastname,
+                username,
+                email,
+                password,
+            });
+
+            console.log(response)
+
+            if (response.data.success) {
+                navigate("/login"); // Redirect to login screen on success
+            } else {
+                setErrorMessage(response.data.message || 'Cadastro falhou!');
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+            setErrorMessage('An unexpected error occurred. Please try again later.');
+        }
     };
 
     return (
         <div className="register-container">
             <h1>Registro</h1>
-            <form action='POST'>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="firstname"
                     placeholder="Primeiro nome"
                     value={firstname}
-                    onChange={(e) => { setfirstname(e.target.value) }}
+                    onChange={(e) => { setFirstname(e.target.value) }}
                 />
                 <input
                     type="text"
                     name="lastname"
                     placeholder="Sobrenome"
                     value={lastname}
-                    onChange={(e) => { setlastname(e.target.value) }}
+                    onChange={(e) => { setLastname(e.target.value) }}
                 />
                 <input
                     type="text"
                     name="username"
                     placeholder="Nome de usuário"
                     value={username}
-                    onChange={(e) => { setusername(e.target.value) }}
+                    onChange={(e) => { setUsername(e.target.value) }}
                 />
                 <input
                     type="email"
                     name="email"
                     placeholder="E-mail"
                     value={email}
-                    onChange={(e) => { setemail(e.target.value) }}
+                    onChange={(e) => { setEmail(e.target.value) }}
                 />
                 <input
                     type="password"
                     name="password"
                     placeholder="Senha"
                     value={password}
-                    onChange={(e) => { setpassword(e.target.value) }}
+                    onChange={(e) => { setPassword(e.target.value) }}
                 />
-                <button onClick={handleSubmit}>Registrar</button>
+                <input type="submit" value="Registrar" />
             </form>
+            {errorMessage && <p>{errorMessage}</p>}
             <p>
                 Já possui uma conta? <Link to="/login">Faça login aqui</Link>
             </p>

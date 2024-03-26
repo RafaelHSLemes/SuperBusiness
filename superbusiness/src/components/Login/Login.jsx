@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css'
+import './Login.css';
+import axios from 'axios';
 
-const Login = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
+function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Insira aqui a lógica para enviar os dados do formulário para o backend
-    alert('Dados enviados com sucesso!');
-  };
+    axios.post('http://localhost:3001/login', {username, password})
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
+  }
 
   return (
     <div className="login-container">
@@ -29,15 +21,13 @@ const Login = () => {
           type="text"
           name="username"
           placeholder="Nome de usuário"
-          value={formData.username}
-          onChange={handleChange}
+          value={setUsername}
         />
         <input
           type="password"
           name="password"
           placeholder="Senha"
-          value={formData.password}
-          onChange={handleChange}
+          value={setPassword}
         />
         <button type="submit">Entrar</button>
       </form>
@@ -45,7 +35,7 @@ const Login = () => {
         <Link to="/recuperar-senha">Esqueceu a senha? Redefina aqui!</Link>
       </p>
       <p>
-        Ainda não tem uma conta? <Link to="/registro">Faça o cadastro aqui!</Link>
+        Ainda não tem uma conta? <Link to="/register">Faça o cadastro aqui!</Link>
       </p>
     </div>
   );
